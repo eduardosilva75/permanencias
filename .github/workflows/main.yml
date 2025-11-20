@@ -43,21 +43,18 @@ jobs:
     - name: Build with PyInstaller
       run: |
         pyinstaller --onefile `
-          --windowed `
+          --noconfirm `
           --name="EscalaPermanencias" `
           --hidden-import=pandas `
-          --hidden-import=numpy `
+          --hidden-import=pandas._libs.tslibs.timedeltas `
           --hidden-import=openpyxl `
-          --hidden-import=PyQt5.sip `
+          --hidden-import=openpyxl.cell._writer `
+          --hidden-import=PyQt5 `
           --hidden-import=PyQt5.QtCore `
           --hidden-import=PyQt5.QtGui `
           --hidden-import=PyQt5.QtWidgets `
-          --hidden-import=sqlite3 `
-          --hidden-import=datetime `
-          --hidden-import=collections `
           --add-data="escala_folgas.xlsx;." `
           --add-data="escala_permanencias.db;." `
-          --clean `
           main.py
 
     - name: List dist contents
